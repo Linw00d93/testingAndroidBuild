@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert,StyleSheet  } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
 function LoginPage() {
@@ -26,7 +26,7 @@ function LoginPage() {
   }
 
   return (
-      <View>
+      <View style={styles.container}>
         <Input
           placeholder="Email"
           //leftIcon={{ type: 'font-awesome', name: 'envelope' }}
@@ -40,8 +40,15 @@ function LoginPage() {
           value={password}
           onChangeText={handlePasswordChange}
         />
-        <Button title="Login" onPress={handleLogin} />
+        <Button  title="Login" onPress={handleLogin} />
       </View>
     );
-  }
+  };
+  const styles = StyleSheet.create({
+    container: {
+      padding: 20,
+    },
+  });
+  
+  
 export default LoginPage;
