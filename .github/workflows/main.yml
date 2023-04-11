@@ -1,3 +1,4 @@
+name: Build the Android App 
 on:
   push:
    branches:
@@ -5,7 +6,7 @@ on:
     - 'master'
 jobs:
   build:
-    name: Build
+    name: Building things
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -32,6 +33,6 @@ jobs:
       - name: Setup React Native   
         run:  cd cicdpipelinetest && npx mkdirp android/app/src/main/assets/ && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       - name: final build    
-        run: env && rm cicdpipelinetest/android/app/src/main/res/drawable-mdpi/node_modules_reactnative_libraries_newappscreen_components_logo.png 
+        run: env 
       - name: this is my final form
         run: cd cicdpipelinetest/android/ && ./gradlew app:assembleRelease 
