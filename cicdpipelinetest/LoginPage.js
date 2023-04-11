@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Input, Button } from 'react-native-elements';
+import { FontAwesome } from 'react-native-vector-icons';
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -12,26 +15,25 @@ export default function LoginPage() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
+      <Input
+        label="Email"
+        placeholder="Enter your email"
+        //leftIcon={{ type: 'font-awesome', name: 'envelope' }}
         autoCapitalize="none"
+        keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
+      <Input
+        label="Password"
+        placeholder="Enter your password"
+        //leftIcon={{ type: 'font-awesome', name: 'lock' }}
         secureTextEntry
         autoCapitalize="none"
         value={password}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
+      <Button title="Sign In" onPress={handleLogin} />
     </View>
   );
 }
@@ -42,28 +44,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '80%',
-    height: 40,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#3498db',
-    borderRadius: 5,
-    padding: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
+    padding: 20,
   },
 });
