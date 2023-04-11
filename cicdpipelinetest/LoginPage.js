@@ -1,49 +1,47 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { FontAwesome } from 'react-native-vector-icons';
 
-
-export default function LoginPage() {
+function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  function handleEmailChange(text) {
+    setEmail(text);
+  }
+
+  function handlePasswordChange(text) {
+    setPassword(text);
+  }
+
+  function handleLogin() {
+    if (!email || !password) {
+      // Show an error message if either field is empty
+      Alert.alert('Please enter your email and password');
+      return;
+    }
     console.log(`Email: ${email}, Password: ${password}`);
-    // Here you can implement your login logic
-  };
+
+    // TODO: Send login request to your server
+  }
 
   return (
-    <View style={styles.container}>
-      <Input
-        label="Email"
-        placeholder="Enter your email"
-        //leftIcon={{ type: 'font-awesome', name: 'envelope' }}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Input
-        label="Password"
-        placeholder="Enter your password"
-        //leftIcon={{ type: 'font-awesome', name: 'lock' }}
-        secureTextEntry
-        autoCapitalize="none"
-        value={password}
-        onChangeText={setPassword}
-      />
-      <Button title="Sign In" onPress={handleLogin} />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-});
+      <View>
+        <Input
+          placeholder="Email"
+          //leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+          value={email}
+          onChangeText={handleEmailChange}
+        />
+        <Input
+          placeholder="Password"
+          //leftIcon={{ type: 'font-awesome', name: 'lock' }}
+          secureTextEntry={true}
+          value={password}
+          onChangeText={handlePasswordChange}
+        />
+        <Button title="Login" onPress={handleLogin} />
+      </View>
+    );
+  }
+export default LoginPage;

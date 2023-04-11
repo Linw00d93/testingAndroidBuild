@@ -6,22 +6,31 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LoginPage from './LoginPage';
-import { FontAwesome } from 'react-native-vector-icons';
+import Splash from './Splash'
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 300); // Change the delay time to whatever value you want (in milliseconds)
+  }, []);
+
   return (
     <View style={styles.container}>
-      <LoginPage />
+      {showSplash ? <Splash /> : <LoginPage />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
+    justifyContent: "center",
     backgroundColor: '#fff',
   },
 })
