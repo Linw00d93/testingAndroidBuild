@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Java I Think 
+      - name: Setuping Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -32,7 +32,5 @@ jobs:
         run: cd cicdpipelinetest/android && ./gradlew --version && env
       - name: Setup React Native   
         run:  cd cicdpipelinetest && npx mkdirp android/app/src/main/assets/ && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
-      - name: final build    
-        run: env 
-      - name: this is my final form
+      - name: Building the file image
         run: cd cicdpipelinetest/android/ && ./gradlew app:assembleRelease 
